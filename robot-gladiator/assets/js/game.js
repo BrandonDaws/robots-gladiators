@@ -2,10 +2,11 @@
 var playerName= window.prompt("What is your robot's name?")
 var playerHealth = 100;
 var playerAttack = 10;
+var playerMoney = 10;
 
 var enemyName = "DOMO";
 var enemyHealth = 50;
-var enemyAttack = 100;
+var enemyAttack = 12;
 
 var fight = function(){
     var promptFight = window.prompt(" Would You like to 'SKIP or 'FIGHT'? type 'skip' or 'fight' to choose")
@@ -38,8 +39,17 @@ if (promptFight === "fight" || promptFight === "FIGHT") {
     }
     // if player choses to skip
   } else if (promptFight === "skip" || promptFight === "SKIP") {
-    window.alert(playerName + " has chosen to skip the fight!");
-  } else {
+    var confirmSkip = window.confirm("are you sure you'd like to skip?");
+    if(confirmSkip){
+      window.alert(playerName + " Has decided to skip this fight... Good Bye!");
+      playerMoney = playerMoney - 2;
+      console.log(playerName + " Had 2 Dollars removed for fleeing!" + playerName + " Now has" + playerMoney + " Dollars Remaing!");
+    }
+    else{
+      fight();
+    }
+  }
+   else {
     window.alert("You need to choose a valid option. Try again!");
   }
   
