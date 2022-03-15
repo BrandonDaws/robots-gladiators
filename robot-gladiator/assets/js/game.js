@@ -5,13 +5,13 @@ var playerAttack = 10;
 var playerMoney = 10;
 
 var enemyNames = ["Roboto", "amy Android", "Robo Trumble"];
-var enemyHealth = 50;
+var enemyHealth = Math.floor(Math.random() * 21) + 40;
 var enemyAttack = 12;
 
 console.log(enemyNames);
 console.log(enemyNames.length);
 console.log(enemyNames[0]);
-console.log(enemyNames[3]);
+console.log(enemyNames[2]);
 
 var fight = function (enemyName) {
  while (playerHealth > 0 && enemyHealth > 0) {
@@ -21,7 +21,7 @@ var fight = function (enemyName) {
       var confirmSkip = window.confirm("are you sure you'd like to skip?");
       if (confirmSkip) {
         window.alert(playerName + " Has decided to skip this fight... Good Bye!");
-        playerMoney = playerMoney - 10;
+        playerMoney = Math.max(0, playerMoney - 10);
         console.log("playerMoney",playerMoney);
         break;
       }
@@ -29,14 +29,14 @@ var fight = function (enemyName) {
       // if player choses to fight, then fight
 
         // remove enemy's health by subtracting the amount set in the playerAttack variable
-        enemyHealth = enemyHealth - playerAttack;
+        enemyHealth = Math.max(0, enemyHealth - playerAttack);
         console.log(
-          playerName + " attacked " + enemyNames + ". " + enemyNames + " now has " + enemyHealth + " health remaining."
+          playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
         );
 
         // check enemy's health
         if (enemyHealth <= 0) {
-          window.alert(enemyNames + " has died!");
+          window.alert(enemyName + " has died!");
 
           //reward player for winningsamplecod
           playerMoney=playerMoney +10;
@@ -44,13 +44,13 @@ var fight = function (enemyName) {
           break;
 
         } else {
-          window.alert(enemyNames + " still has " + enemyHealth + " health left.");
+          window.alert(enemyName + " still has " + enemyHealth + " health left.");
         }
 
         // remove player's health by subtracting the amount set in the enemyAttack variable
-        playerHealth = playerHealth - enemyAttack;
+        playerHealth = Math.max(0, playerHealth - enemyAttack);
         console.log(
-          enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+          enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
         );
 
         // check player's health
@@ -84,7 +84,7 @@ var fight = function (enemyName) {
        var pickedEnemyName = enemyNames[i];
 
        //reset enemy health after each fight 
-       enemyHealth=50;
+       enemyHealth = randomNumber();
 
       fight(pickedEnemyName);
 
@@ -181,4 +181,12 @@ var fight = function (enemyName) {
     }
   }
 
- //fight();
+  //function to generate random numric values
+  var randomNumber = function(){
+  
+    Math.floor(Math.random() * 21) +40;
+
+    return IDBCursorWithValue;
+  };
+
+ fight();
